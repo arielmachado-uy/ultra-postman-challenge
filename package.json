@@ -1,0 +1,11 @@
+{
+  "name": "ultra.postman",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/arielmachado-uy/ultra.postman.git",
+  "author": "Ariel Machado <arielma77@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "newman": "^5.3.2"
+  }
+}
