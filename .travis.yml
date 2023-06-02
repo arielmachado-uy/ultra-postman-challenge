@@ -11,4 +11,4 @@ before_script:
 - node_modules/.bin/newman --version
 
 script:
-- node_modules/.bin/newman run newman run ultra_collection.json -e ultra_environment.json
+- node_modules/.bin/newman run ultra_collection.json -e ultra_environment.json
