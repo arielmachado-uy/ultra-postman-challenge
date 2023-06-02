@@ -1,4 +1,14 @@
-language: ruby
-rvm:
- - 2.2
- - jruby
+language: node_js
+node_js:
+- "16.13.2"
+
+install:
+- npm install newman
+
+before_script:
+- node --version
+- npm --version
+- node_modules/.bin/newman --version
+
+script:
+- node_modules/.bin/newman run newman run ultra_collection.json -e ultra_environment.json
