@@ -1,0 +1,855 @@
+{
+	"info": {
+		"_postman_id": "45b72b68-db29-460d-894f-b8db90d64b59",
+		"name": "Ultra.io",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create new user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate response status\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Validate response values\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.id).to.be.a('number');",
+							"    pm.expect(responseJson.name).to.eql(\"Ariel Machado\");",
+							"    pm.expect(responseJson.email).to.eql('ariel@machado.com');",
+							"    pm.expect(responseJson.gender).to.eql('male');",
+							"    pm.expect(responseJson.status).to.eql('active');",
+							"});",
+							"",
+							"pm.test(\"Validate response schema\", function () {",
+							"    const schema = {",
+							"        \"type\": \"object\",",
+							"        \"properties\": {",
+							"        \"id\": {",
+							"            \"type\": \"integer\"",
+							"        },",
+							"        \"name\": {",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"email\": {",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"gender\": {",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"status\": {",
+							"            \"type\": \"string\"",
+							"        }",
+							"    },",
+							"    \"required\": ",
+							"        [",
+							"            \"id\",",
+							"            \"name\",",
+							"            \"email\",",
+							"            \"gender\",",
+							"            \"status\"",
+							"        ]",
+							"    }",
+							"",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"});",
+							"",
+							"pm.test(\"Update environment variables with the values from the response\", function () {",
+							"    if (pm.response.code == 201) {",
+							"        var jsonData = JSON.parse(responseBody);",
+							"        postman.setEnvironmentVariable(\"id\", jsonData.id)",
+							"        postman.setEnvironmentVariable(\"name\", jsonData.name)",
+							"        postman.setEnvironmentVariable(\"email\", jsonData.email)",
+							"        postman.setEnvironmentVariable(\"gender\", jsonData.gender)",
+							"        postman.setEnvironmentVariable(\"status\", jsonData.status)",
+							"    }    ",
+							"});",
+							"",
+							"pm.test(\"Validate the value stored at the environment level\", function () {",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    pm.expect(pm.environment.get(\"id\")).to.eql(String(pm.response.json().id));",
+							"    pm.expect(pm.environment.get(\"name\")).to.eql(String(pm.response.json().name));",
+							"    pm.expect(pm.environment.get(\"email\")).to.eql(String(pm.response.json().email));",
+							"    pm.expect(pm.environment.get(\"gender\")).to.eql(String(pm.response.json().gender));",
+							"    pm.expect(pm.environment.get(\"status\")).to.eql(String(pm.response.json().status));",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Ariel Machado\",\n    \"email\": \"ariel@machado.com\",\n    \"gender\": \"male\",\n    \"status\": \"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{api_url}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Create new user - Email duplicated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate response status\", function () {",
+							"    pm.response.to.have.status(422);",
+							"});",
+							"",
+							"pm.test(\"Validate response values\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson[0].field).to.be.eql('email');",
+							"    pm.expect(responseJson[0].message).to.be.eql('has already been taken');",
+							"});",
+							"",
+							"pm.test(\"Validate response schema\", function () {",
+							"    const schema = {",
+							"        \"type\": \"array\",",
+							"        \"items\": [",
+							"            {",
+							"                \"type\": \"object\",",
+							"                \"properties\": {",
+							"                    \"field\": {",
+							"                        \"type\": \"string\"",
+							"                    },",
+							"                \"message\": {",
+							"                    \"type\": \"string\"",
+							"                }",
+							"            },",
+							"            \"required\": [",
+							"                \"field\",",
+							"                \"message\"",
+							"            ]",
+							"        }",
+							"        ]",
+							"    }",
+							"",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Ariel Machado\",\n    \"email\": \"ariel@machado.com\",\n    \"gender\": \"male\",\n    \"status\": \"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{api_url}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Get list of users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate response status\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Validate response values\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson[0].id).to.be.a('number');",
+							"    pm.expect(responseJson[0].name).to.eql(\"Ariel Machado\");",
+							"    pm.expect(responseJson[0].email).to.eql('ariel@machado.com');",
+							"    pm.expect(responseJson[0].gender).to.eql('male');",
+							"    pm.expect(responseJson[0].status).to.eql('active');",
+							"});",
+							"",
+							"pm.test(\"Validate response schema\", function () {",
+							"    const schema = {",
+							"        \"type\": \"array\",",
+							"        \"items\": [",
+							"            {",
+							"                \"type\": \"object\",",
+							"                \"properties\": {",
+							"                    \"id\": {",
+							"                        \"type\": \"integer\"",
+							"                    },",
+							"                    \"name\": {",
+							"                        \"type\": \"string\"",
+							"                    },",
+							"                    \"email\": {",
+							"                        \"type\": \"string\"",
+							"                    },",
+							"                    \"gender\": {",
+							"                        \"type\": \"string\"",
+							"                    },",
+							"                    \"status\": {",
+							"                        \"type\": \"string\"",
+							"                    }",
+							"            },",
+							"            \"required\": ",
+							"                [",
+							"                    \"id\",",
+							"                    \"name\",",
+							"                    \"email\",",
+							"                    \"gender\",",
+							"                    \"status\"",
+							"                ]",
+							"            }",
+							"        ]",
+							"    }",
+							"",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "{{api_url}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Get user by ID - Initial values",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate response status\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Validate response values\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.id).to.be.a('number');",
+							"    pm.expect(responseJson.name).to.eql(\"Ariel Machado\");",
+							"    pm.expect(responseJson.email).to.eql('ariel@machado.com');",
+							"    pm.expect(responseJson.gender).to.eql('male');",
+							"    pm.expect(responseJson.status).to.eql('active');",
+							"});",
+							"",
+							"pm.test(\"Validate response schema\", function () {",
+							"    const schema = {",
+							"        \"type\": \"object\",",
+							"        \"properties\": {",
+							"        \"id\": {",
+							"            \"type\": \"integer\"",
+							"        },",
+							"        \"name\": {",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"email\": {",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"gender\": {",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"status\": {",
+							"            \"type\": \"string\"",
+							"        }",
+							"    },",
+							"    \"required\": [",
+							"        \"id\",",
+							"        \"name\",",
+							"        \"email\",",
+							"        \"gender\",",
+							"        \"status\"",
+							"    ]}",
+							"",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{api_url}}/{{id}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Update user data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate response status\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Validate response values\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.id).to.be.a('number');",
+							"    pm.expect(responseJson.name).to.eql(\"Cata Machado\");",
+							"    pm.expect(responseJson.email).to.eql('cata@machado.com');",
+							"    pm.expect(responseJson.gender).to.eql('female');",
+							"    pm.expect(responseJson.status).to.eql('inactive');",
+							"});",
+							"",
+							"pm.test(\"Validate response schema\", function () {",
+							"    const schema = {",
+							"        \"type\": \"object\",",
+							"        \"properties\": {",
+							"        \"id\": {",
+							"            \"type\": \"integer\"",
+							"        },",
+							"        \"name\": {",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"email\": {",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"gender\": {",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"status\": {",
+							"            \"type\": \"string\"",
+							"        }",
+							"    },",
+							"    \"required\": ",
+							"        [",
+							"            \"id\",",
+							"            \"name\",",
+							"            \"email\",",
+							"            \"gender\",",
+							"            \"status\"",
+							"        ]",
+							"    }",
+							"",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"});",
+							"",
+							"pm.test(\"Update environment variables with the values from the response\", function () {",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    postman.setEnvironmentVariable(\"name\", jsonData.name)",
+							"    postman.setEnvironmentVariable(\"email\", jsonData.email)",
+							"    postman.setEnvironmentVariable(\"gender\", jsonData.gender)",
+							"    postman.setEnvironmentVariable(\"status\", jsonData.status)",
+							"});",
+							"",
+							"pm.test(\"Validate the value stored at the environment level\", function () {",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    pm.expect(pm.environment.get(\"id\")).to.eql(String(pm.response.json().id));",
+							"    pm.expect(pm.environment.get(\"name\")).to.eql(String(pm.response.json().name));",
+							"    pm.expect(pm.environment.get(\"email\")).to.eql(String(pm.response.json().email));",
+							"    pm.expect(pm.environment.get(\"gender\")).to.eql(String(pm.response.json().gender));",
+							"    pm.expect(pm.environment.get(\"status\")).to.eql(String(pm.response.json().status));",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Cata Machado\",\n    \"email\": \"cata@machado.com\",\n    \"gender\": \"female\",\n    \"status\": \"inactive\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{api_url}}/{{id}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Get user by ID - User updated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate response status\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Validate response values\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.id).to.be.a('number');",
+							"    pm.expect(responseJson.name).to.eql(\"Cata Machado\");",
+							"    pm.expect(responseJson.email).to.eql('cata@machado.com');",
+							"    pm.expect(responseJson.gender).to.eql('female');",
+							"    pm.expect(responseJson.status).to.eql('inactive');",
+							"});",
+							"",
+							"pm.test(\"Validate response schema\", function () {",
+							"    const schema = {",
+							"        \"type\": \"object\",",
+							"        \"properties\": {",
+							"        \"id\": {",
+							"            \"type\": \"integer\"",
+							"        },",
+							"        \"name\": {",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"email\": {",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"gender\": {",
+							"            \"type\": \"string\"",
+							"        },",
+							"        \"status\": {",
+							"            \"type\": \"string\"",
+							"        }",
+							"    },",
+							"    \"required\": [",
+							"        \"id\",",
+							"        \"name\",",
+							"        \"email\",",
+							"        \"gender\",",
+							"        \"status\"",
+							"    ]}",
+							"",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{api_url}}/{{id}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate response status\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							"",
+							"pm.test(\"Validate response body is empty\", function () {",
+							"    pm.expect(pm.response.text()).to.eql('');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "{{api_url}}/{{id}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Get user by ID - Not found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate response status\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Validate response values\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.message).to.be.eql('Resource not found');",
+							"});",
+							"",
+							"pm.test(\"Validate response schema\", function () {",
+							"    const schema = {",
+							"        \"type\": \"object\",",
+							"        \"properties\": {",
+							"            \"message\": {",
+							"                \"type\": \"string\"",
+							"            }",
+							"        },",
+							"        \"required\": [",
+							"            \"message\"",
+							"        ]",
+							"    }",
+							"",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{api_url}}/{{id}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user - Not found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate response status\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Validate response values\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.message).to.be.eql('Resource not found');",
+							"});",
+							"",
+							"pm.test(\"Validate response schema\", function () {",
+							"    const schema = {",
+							"        \"type\": \"object\",",
+							"        \"properties\": {",
+							"            \"message\": {",
+							"                \"type\": \"string\"",
+							"            }",
+							"        },",
+							"        \"required\": [",
+							"            \"message\"",
+							"        ]",
+							"    }",
+							"",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "{{api_url}}/{{id}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Create new user - Empty fields errors",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate response status\", function () {",
+							"    pm.response.to.have.status(422);",
+							"});",
+							"",
+							"pm.test(\"Validate response values\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson[0].field).to.be.eql('email');",
+							"    pm.expect(responseJson[0].message).to.be.eql(\"can't be blank\");",
+							"    pm.expect(responseJson[1].field).to.be.eql('name');",
+							"    pm.expect(responseJson[1].message).to.be.eql(\"can't be blank\");",
+							"    pm.expect(responseJson[2].field).to.be.eql('gender');",
+							"    pm.expect(responseJson[2].message).to.be.eql(\"can't be blank, can be male of female\");",
+							"    pm.expect(responseJson[3].field).to.be.eql('status');",
+							"    pm.expect(responseJson[3].message).to.be.eql(\"can't be blank\");",
+							"});",
+							"",
+							"// pm.test(\"Validate response schema\", function () {",
+							"//     const schema = {",
+							"//         \"type\": \"array\",",
+							"//         \"items\": [",
+							"//             {",
+							"//                 \"type\": \"object\",",
+							"//                 \"properties\": {",
+							"//                     \"field\": {",
+							"//                         \"type\": \"string\"",
+							"//                     },",
+							"//                 \"message\": {",
+							"//                     \"type\": \"string\"",
+							"//                 }",
+							"//             },",
+							"//             \"required\": [",
+							"//                 \"field\",",
+							"//                 \"message\"",
+							"//             ]",
+							"//         }",
+							"//         ]",
+							"//     }",
+							"",
+							"//     pm.response.to.have.jsonSchema(schema);",
+							"// });",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"\",\n    \"email\": \"\",\n    \"gender\": \"\",\n    \"status\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{api_url}}"
+			},
+			"response": []
+		},
+		{
+			"name": "Create new user - Value fields errors",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate response status\", function () {",
+							"    pm.response.to.have.status(422);",
+							"});",
+							"",
+							"pm.test(\"Validate response values\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson[0].field).to.be.eql('gender');",
+							"    pm.expect(responseJson[0].message).to.be.eql(\"can't be blank, can be male of female\");",
+							"    pm.expect(responseJson[1].field).to.be.eql('status');",
+							"    pm.expect(responseJson[1].message).to.be.eql(\"can't be blank\");",
+							"});",
+							"",
+							"pm.test(\"Validate response schema\", function () {",
+							"    const schema = {",
+							"        \"type\": \"array\",",
+							"        \"items\": [",
+							"            {",
+							"                \"type\": \"object\",",
+							"                \"properties\": {",
+							"                    \"field\": {",
+							"                        \"type\": \"string\"",
+							"                    },",
+							"                \"message\": {",
+							"                    \"type\": \"string\"",
+							"                }",
+							"            },",
+							"                \"required\": [",
+							"                    \"field\",",
+							"                    \"message\"",
+							"                ]",
+							"            },",
+							"            {",
+							"            \"type\": \"object\",",
+							"            \"properties\": {",
+							"                \"field\": {",
+							"                \"type\": \"string\"",
+							"                },",
+							"                \"message\": {",
+							"                \"type\": \"string\"",
+							"                }",
+							"            },",
+							"            \"required\": [",
+							"                \"field\",",
+							"                \"message\"",
+							"            ]",
+							"            },",
+							"            {",
+							"            \"type\": \"object\",",
+							"            \"properties\": {",
+							"                \"field\": {",
+							"                \"type\": \"string\"",
+							"                },",
+							"                \"message\": {",
+							"                \"type\": \"string\"",
+							"                }",
+							"            },",
+							"            \"required\": [",
+							"                \"field\",",
+							"                \"message\"",
+							"            ]",
+							"            },",
+							"            {",
+							"            \"type\": \"object\",",
+							"            \"properties\": {",
+							"                \"field\": {",
+							"                \"type\": \"string\"",
+							"                },",
+							"                \"message\": {",
+							"                \"type\": \"string\"",
+							"                }",
+							"            },",
+							"            \"required\": [",
+							"                \"field\",",
+							"                \"message\"",
+							"            ]",
+							"            }",
+							"        ]",
+							"    }",
+							"",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Ariel Machado\",\n    \"email\": \"ariel@machado.com\",\n    \"gender\": \"something\",\n    \"status\": \"else\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{api_url}}"
+			},
+			"response": []
+		}
+	]
+}
