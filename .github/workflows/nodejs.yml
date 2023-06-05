@@ -29,14 +29,6 @@ jobs:
     - name: Install dependencies
       run: npm install newman
 
-    - name: Display Node.js version
-      run: node --version
-
-    - name: Display npm version
-      run: npm --version
-
-    - name: Display Newman version
-      run: npx newman --version
-
     - name: Run tests
-      run: npx newman run ultra_collection.json -e ultra_environment.json
+      run: yarn pm:run
+      # run: npx newman run ultra_collection.json -e ultra_environment.json
