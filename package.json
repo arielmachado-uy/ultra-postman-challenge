@@ -5,6 +5,9 @@
   "repository": "https://github.com/arielmachado-uy/ultra.postman.git",
   "author": "Ariel Machado <arielma77@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "pm:run": "newman run ultra_collection.json -e ultra_environment.json"
+  },
   "dependencies": {
     "newman": "^5.3.2"
   }
