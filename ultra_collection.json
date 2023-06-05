@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "45b72b68-db29-460d-894f-b8db90d64b59",
 		"name": "Ultra.io",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -86,9 +86,13 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+							"type": "string"
+						}
+					]
 				},
 				"method": "POST",
 				"header": [],
@@ -101,7 +105,12 @@
 						}
 					}
 				},
-				"url": "{{api_url}}"
+				"url": {
+					"raw": "{{api_url}}",
+					"host": [
+						"{{api_url}}"
+					]
+				}
 			},
 			"response": []
 		},
@@ -155,9 +164,13 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+							"type": "string"
+						}
+					]
 				},
 				"method": "POST",
 				"header": [],
@@ -170,7 +183,12 @@
 						}
 					}
 				},
-				"url": "{{api_url}}"
+				"url": {
+					"raw": "{{api_url}}",
+					"host": [
+						"{{api_url}}"
+					]
+				}
 			},
 			"response": []
 		},
@@ -243,9 +261,13 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+							"type": "string"
+						}
+					]
 				},
 				"method": "GET",
 				"header": [],
@@ -253,7 +275,12 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "{{api_url}}"
+				"url": {
+					"raw": "{{api_url}}",
+					"host": [
+						"{{api_url}}"
+					]
+				}
 			},
 			"response": []
 		},
@@ -319,9 +346,13 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+							"type": "string"
+						}
+					]
 				},
 				"method": "GET",
 				"header": [],
@@ -334,7 +365,15 @@
 						}
 					}
 				},
-				"url": "{{api_url}}/{{id}}"
+				"url": {
+					"raw": "{{api_url}}/{{id}}",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"{{id}}"
+					]
+				}
 			},
 			"response": []
 		},
@@ -416,9 +455,13 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+							"type": "string"
+						}
+					]
 				},
 				"method": "PUT",
 				"header": [],
@@ -431,7 +474,15 @@
 						}
 					}
 				},
-				"url": "{{api_url}}/{{id}}"
+				"url": {
+					"raw": "{{api_url}}/{{id}}",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"{{id}}"
+					]
+				}
 			},
 			"response": []
 		},
@@ -497,9 +548,13 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+							"type": "string"
+						}
+					]
 				},
 				"method": "GET",
 				"header": [],
@@ -512,7 +567,15 @@
 						}
 					}
 				},
-				"url": "{{api_url}}/{{id}}"
+				"url": {
+					"raw": "{{api_url}}/{{id}}",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"{{id}}"
+					]
+				}
 			},
 			"response": []
 		},
@@ -538,13 +601,25 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+							"type": "string"
+						}
+					]
 				},
 				"method": "DELETE",
 				"header": [],
-				"url": "{{api_url}}/{{id}}"
+				"url": {
+					"raw": "{{api_url}}/{{id}}",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"{{id}}"
+					]
+				}
 			},
 			"response": []
 		},
@@ -591,9 +666,13 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+							"type": "string"
+						}
+					]
 				},
 				"method": "GET",
 				"header": [],
@@ -606,7 +685,85 @@
 						}
 					}
 				},
-				"url": "{{api_url}}/{{id}}"
+				"url": {
+					"raw": "{{api_url}}/{{id}}",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user - Not found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate response status\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Validate response values\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.message).to.be.eql('Resource not found');",
+							"});",
+							"",
+							"pm.test(\"Validate response schema\", function () {",
+							"    const schema = {",
+							"        \"type\": \"object\",",
+							"        \"properties\": {",
+							"            \"message\": {",
+							"                \"type\": \"string\"",
+							"            }",
+							"        },",
+							"        \"required\": [",
+							"            \"message\"",
+							"        ]",
+							"    }",
+							"",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Cata Machado\",\n    \"email\": \"cata@machado.com\",\n    \"gender\": \"female\",\n    \"status\": \"inactive\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_url}}/{{id}}",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"{{id}}"
+					]
+				}
 			},
 			"response": []
 		},
@@ -650,13 +807,25 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+							"type": "string"
+						}
+					]
 				},
 				"method": "DELETE",
 				"header": [],
-				"url": "{{api_url}}/{{id}}"
+				"url": {
+					"raw": "{{api_url}}/{{id}}",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"{{id}}"
+					]
+				}
 			},
 			"response": []
 		},
@@ -716,9 +885,13 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+							"type": "string"
+						}
+					]
 				},
 				"method": "POST",
 				"header": [],
@@ -731,7 +904,12 @@
 						}
 					}
 				},
-				"url": "{{api_url}}"
+				"url": {
+					"raw": "{{api_url}}",
+					"host": [
+						"{{api_url}}"
+					]
+				}
 			},
 			"response": []
 		},
@@ -832,9 +1010,13 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+							"type": "string"
+						}
+					]
 				},
 				"method": "POST",
 				"header": [],
@@ -847,7 +1029,12 @@
 						}
 					}
 				},
-				"url": "{{api_url}}"
+				"url": {
+					"raw": "{{api_url}}",
+					"host": [
+						"{{api_url}}"
+					]
+				}
 			},
 			"response": []
 		}
