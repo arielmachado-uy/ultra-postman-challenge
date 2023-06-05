@@ -6,1037 +6,1416 @@
 	},
 	"item": [
 		{
-			"name": "Create new user",
-			"event": [
+			"name": "Positive Scenarios",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Validate response status\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"Validate response values\", function () {",
-							"    const responseJson = pm.response.json();",
-							"    pm.expect(responseJson.id).to.be.a('number');",
-							"    pm.expect(responseJson.name).to.eql(\"Ariel Machado\");",
-							"    pm.expect(responseJson.email).to.eql('ariel@machado.com');",
-							"    pm.expect(responseJson.gender).to.eql('male');",
-							"    pm.expect(responseJson.status).to.eql('active');",
-							"});",
-							"",
-							"pm.test(\"Validate response schema\", function () {",
-							"    const schema = {",
-							"        \"type\": \"object\",",
-							"        \"properties\": {",
-							"        \"id\": {",
-							"            \"type\": \"integer\"",
-							"        },",
-							"        \"name\": {",
-							"            \"type\": \"string\"",
-							"        },",
-							"        \"email\": {",
-							"            \"type\": \"string\"",
-							"        },",
-							"        \"gender\": {",
-							"            \"type\": \"string\"",
-							"        },",
-							"        \"status\": {",
-							"            \"type\": \"string\"",
-							"        }",
-							"    },",
-							"    \"required\": ",
-							"        [",
-							"            \"id\",",
-							"            \"name\",",
-							"            \"email\",",
-							"            \"gender\",",
-							"            \"status\"",
-							"        ]",
-							"    }",
-							"",
-							"    pm.response.to.have.jsonSchema(schema);",
-							"});",
-							"",
-							"pm.test(\"Update environment variables with the values from the response\", function () {",
-							"    if (pm.response.code == 201) {",
-							"        var jsonData = JSON.parse(responseBody);",
-							"        postman.setEnvironmentVariable(\"id\", jsonData.id)",
-							"        postman.setEnvironmentVariable(\"name\", jsonData.name)",
-							"        postman.setEnvironmentVariable(\"email\", jsonData.email)",
-							"        postman.setEnvironmentVariable(\"gender\", jsonData.gender)",
-							"        postman.setEnvironmentVariable(\"status\", jsonData.status)",
-							"    }    ",
-							"});",
-							"",
-							"pm.test(\"Validate the value stored at the environment level\", function () {",
-							"    var jsonData = JSON.parse(responseBody);",
-							"    pm.expect(pm.environment.get(\"id\")).to.eql(String(pm.response.json().id));",
-							"    pm.expect(pm.environment.get(\"name\")).to.eql(String(pm.response.json().name));",
-							"    pm.expect(pm.environment.get(\"email\")).to.eql(String(pm.response.json().email));",
-							"    pm.expect(pm.environment.get(\"gender\")).to.eql(String(pm.response.json().gender));",
-							"    pm.expect(pm.environment.get(\"status\")).to.eql(String(pm.response.json().status));",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "Create new user",
+					"item": [
 						{
-							"key": "token",
-							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
-							"type": "string"
+							"name": "Create new user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"",
+											"pm.test(\"Validate response values\", function () {",
+											"    const responseJson = pm.response.json();",
+											"    pm.expect(responseJson.id).to.be.a('number');",
+											"    pm.expect(responseJson.name).to.eql(\"Ariel Machado\");",
+											"    pm.expect(responseJson.email).to.eql('ariel@machado.com');",
+											"    pm.expect(responseJson.gender).to.eql('male');",
+											"    pm.expect(responseJson.status).to.eql('active');",
+											"});",
+											"",
+											"pm.test(\"Validate response schema\", function () {",
+											"    const schema = {",
+											"        \"type\": \"object\",",
+											"        \"properties\": {",
+											"        \"id\": {",
+											"            \"type\": \"integer\"",
+											"        },",
+											"        \"name\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"email\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"gender\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"status\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    },",
+											"    \"required\": ",
+											"        [",
+											"            \"id\",",
+											"            \"name\",",
+											"            \"email\",",
+											"            \"gender\",",
+											"            \"status\"",
+											"        ]",
+											"    }",
+											"",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});",
+											"",
+											"pm.test(\"Update environment variables with the values from the response\", function () {",
+											"    if (pm.response.code == 201) {",
+											"        var jsonData = JSON.parse(responseBody);",
+											"        postman.setEnvironmentVariable(\"id\", jsonData.id)",
+											"        postman.setEnvironmentVariable(\"name\", jsonData.name)",
+											"        postman.setEnvironmentVariable(\"email\", jsonData.email)",
+											"        postman.setEnvironmentVariable(\"gender\", jsonData.gender)",
+											"        postman.setEnvironmentVariable(\"status\", jsonData.status)",
+											"    }    ",
+											"});",
+											"",
+											"pm.test(\"Validate the value stored at the environment level\", function () {",
+											"    var jsonData = JSON.parse(responseBody);",
+											"    pm.expect(pm.environment.get(\"id\")).to.eql(String(pm.response.json().id));",
+											"    pm.expect(pm.environment.get(\"name\")).to.eql(String(pm.response.json().name));",
+											"    pm.expect(pm.environment.get(\"email\")).to.eql(String(pm.response.json().email));",
+											"    pm.expect(pm.environment.get(\"gender\")).to.eql(String(pm.response.json().gender));",
+											"    pm.expect(pm.environment.get(\"status\")).to.eql(String(pm.response.json().status));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Ariel Machado\",\n    \"email\": \"ariel@machado.com\",\n    \"gender\": \"male\",\n    \"status\": \"active\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}",
+									"host": [
+										"{{api_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get list of users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Validate response values\", function () {",
+											"    const responseJson = pm.response.json();",
+											"    pm.expect(responseJson[0].id).to.be.a('number');",
+											"    pm.expect(responseJson[0].name).to.eql(\"Ariel Machado\");",
+											"    pm.expect(responseJson[0].email).to.eql('ariel@machado.com');",
+											"    pm.expect(responseJson[0].gender).to.eql('male');",
+											"    pm.expect(responseJson[0].status).to.eql('active');",
+											"});",
+											"",
+											"pm.test(\"Validate response schema\", function () {",
+											"    const schema = {",
+											"        \"type\": \"array\",",
+											"        \"items\": [",
+											"            {",
+											"                \"type\": \"object\",",
+											"                \"properties\": {",
+											"                    \"id\": {",
+											"                        \"type\": \"integer\"",
+											"                    },",
+											"                    \"name\": {",
+											"                        \"type\": \"string\"",
+											"                    },",
+											"                    \"email\": {",
+											"                        \"type\": \"string\"",
+											"                    },",
+											"                    \"gender\": {",
+											"                        \"type\": \"string\"",
+											"                    },",
+											"                    \"status\": {",
+											"                        \"type\": \"string\"",
+											"                    }",
+											"            },",
+											"            \"required\": ",
+											"                [",
+											"                    \"id\",",
+											"                    \"name\",",
+											"                    \"email\",",
+											"                    \"gender\",",
+											"                    \"status\"",
+											"                ]",
+											"            }",
+											"        ]",
+											"    }",
+											"",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{api_url}}",
+									"host": [
+										"{{api_url}}"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Ariel Machado\",\n    \"email\": \"ariel@machado.com\",\n    \"gender\": \"male\",\n    \"status\": \"active\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Update user's values",
+					"item": [
+						{
+							"name": "Get user by ID - Initial values",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Validate response values\", function () {",
+											"    const responseJson = pm.response.json();",
+											"    pm.expect(responseJson.id).to.be.a('number');",
+											"    pm.expect(responseJson.name).to.eql(\"Ariel Machado\");",
+											"    pm.expect(responseJson.email).to.eql('ariel@machado.com');",
+											"    pm.expect(responseJson.gender).to.eql('male');",
+											"    pm.expect(responseJson.status).to.eql('active');",
+											"});",
+											"",
+											"pm.test(\"Validate response schema\", function () {",
+											"    const schema = {",
+											"        \"type\": \"object\",",
+											"        \"properties\": {",
+											"        \"id\": {",
+											"            \"type\": \"integer\"",
+											"        },",
+											"        \"name\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"email\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"gender\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"status\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    },",
+											"    \"required\": [",
+											"        \"id\",",
+											"        \"name\",",
+											"        \"email\",",
+											"        \"gender\",",
+											"        \"status\"",
+											"    ]}",
+											"",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/{{id}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update user data",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Validate response values\", function () {",
+											"    const responseJson = pm.response.json();",
+											"    pm.expect(responseJson.id).to.be.a('number');",
+											"    pm.expect(responseJson.name).to.eql(\"Cata Machado\");",
+											"    pm.expect(responseJson.email).to.eql('cata@machado.com');",
+											"    pm.expect(responseJson.gender).to.eql('female');",
+											"    pm.expect(responseJson.status).to.eql('inactive');",
+											"});",
+											"",
+											"pm.test(\"Validate response schema\", function () {",
+											"    const schema = {",
+											"        \"type\": \"object\",",
+											"        \"properties\": {",
+											"        \"id\": {",
+											"            \"type\": \"integer\"",
+											"        },",
+											"        \"name\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"email\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"gender\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"status\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    },",
+											"    \"required\": ",
+											"        [",
+											"            \"id\",",
+											"            \"name\",",
+											"            \"email\",",
+											"            \"gender\",",
+											"            \"status\"",
+											"        ]",
+											"    }",
+											"",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});",
+											"",
+											"pm.test(\"Update environment variables with the values from the response\", function () {",
+											"    var jsonData = JSON.parse(responseBody);",
+											"    postman.setEnvironmentVariable(\"name\", jsonData.name)",
+											"    postman.setEnvironmentVariable(\"email\", jsonData.email)",
+											"    postman.setEnvironmentVariable(\"gender\", jsonData.gender)",
+											"    postman.setEnvironmentVariable(\"status\", jsonData.status)",
+											"});",
+											"",
+											"pm.test(\"Validate the value stored at the environment level\", function () {",
+											"    var jsonData = JSON.parse(responseBody);",
+											"    pm.expect(pm.environment.get(\"id\")).to.eql(String(pm.response.json().id));",
+											"    pm.expect(pm.environment.get(\"name\")).to.eql(String(pm.response.json().name));",
+											"    pm.expect(pm.environment.get(\"email\")).to.eql(String(pm.response.json().email));",
+											"    pm.expect(pm.environment.get(\"gender\")).to.eql(String(pm.response.json().gender));",
+											"    pm.expect(pm.environment.get(\"status\")).to.eql(String(pm.response.json().status));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Cata Machado\",\n    \"email\": \"cata@machado.com\",\n    \"gender\": \"female\",\n    \"status\": \"inactive\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/{{id}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get user by ID - User updated",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Validate response values\", function () {",
+											"    const responseJson = pm.response.json();",
+											"    pm.expect(responseJson.id).to.be.a('number');",
+											"    pm.expect(responseJson.name).to.eql(\"Cata Machado\");",
+											"    pm.expect(responseJson.email).to.eql('cata@machado.com');",
+											"    pm.expect(responseJson.gender).to.eql('female');",
+											"    pm.expect(responseJson.status).to.eql('inactive');",
+											"});",
+											"",
+											"pm.test(\"Validate response schema\", function () {",
+											"    const schema = {",
+											"        \"type\": \"object\",",
+											"        \"properties\": {",
+											"        \"id\": {",
+											"            \"type\": \"integer\"",
+											"        },",
+											"        \"name\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"email\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"gender\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"status\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    },",
+											"    \"required\": [",
+											"        \"id\",",
+											"        \"name\",",
+											"        \"email\",",
+											"        \"gender\",",
+											"        \"status\"",
+											"    ]}",
+											"",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/{{id}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
 						}
-					}
+					]
 				},
-				"url": {
-					"raw": "{{api_url}}",
-					"host": [
-						"{{api_url}}"
+				{
+					"name": "Delete User",
+					"item": [
+						{
+							"name": "Delete user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});",
+											"",
+											"pm.test(\"Validate response body is empty\", function () {",
+											"    pm.expect(pm.response.text()).to.eql('');",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/{{id}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
+						}
 					]
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Create new user - Email duplicated",
-			"event": [
+			"name": "Negative Scenarios",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Validate response status\", function () {",
-							"    pm.response.to.have.status(422);",
-							"});",
-							"",
-							"pm.test(\"Validate response values\", function () {",
-							"    const responseJson = pm.response.json();",
-							"    pm.expect(responseJson[0].field).to.be.eql('email');",
-							"    pm.expect(responseJson[0].message).to.be.eql('has already been taken');",
-							"});",
-							"",
-							"pm.test(\"Validate response schema\", function () {",
-							"    const schema = {",
-							"        \"type\": \"array\",",
-							"        \"items\": [",
-							"            {",
-							"                \"type\": \"object\",",
-							"                \"properties\": {",
-							"                    \"field\": {",
-							"                        \"type\": \"string\"",
-							"                    },",
-							"                \"message\": {",
-							"                    \"type\": \"string\"",
-							"                }",
-							"            },",
-							"            \"required\": [",
-							"                \"field\",",
-							"                \"message\"",
-							"            ]",
-							"        }",
-							"        ]",
-							"    }",
-							"",
-							"    pm.response.to.have.jsonSchema(schema);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "Not found",
+					"item": [
 						{
-							"key": "token",
-							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
-							"type": "string"
+							"name": "Get user by ID - Not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test(\"Validate response values\", function () {",
+											"    const responseJson = pm.response.json();",
+											"    pm.expect(responseJson.message).to.be.eql('Resource not found');",
+											"});",
+											"",
+											"pm.test(\"Validate response schema\", function () {",
+											"    const schema = {",
+											"        \"type\": \"object\",",
+											"        \"properties\": {",
+											"            \"message\": {",
+											"                \"type\": \"string\"",
+											"            }",
+											"        },",
+											"        \"required\": [",
+											"            \"message\"",
+											"        ]",
+											"    }",
+											"",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/{{id}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update user - Not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test(\"Validate response values\", function () {",
+											"    const responseJson = pm.response.json();",
+											"    pm.expect(responseJson.message).to.be.eql('Resource not found');",
+											"});",
+											"",
+											"pm.test(\"Validate response schema\", function () {",
+											"    const schema = {",
+											"        \"type\": \"object\",",
+											"        \"properties\": {",
+											"            \"message\": {",
+											"                \"type\": \"string\"",
+											"            }",
+											"        },",
+											"        \"required\": [",
+											"            \"message\"",
+											"        ]",
+											"    }",
+											"",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Cata Machado\",\n    \"email\": \"cata@machado.com\",\n    \"gender\": \"female\",\n    \"status\": \"inactive\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}/{{id}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete user - Not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test(\"Validate response values\", function () {",
+											"    const responseJson = pm.response.json();",
+											"    pm.expect(responseJson.message).to.be.eql('Resource not found');",
+											"});",
+											"",
+											"pm.test(\"Validate response schema\", function () {",
+											"    const schema = {",
+											"        \"type\": \"object\",",
+											"        \"properties\": {",
+											"            \"message\": {",
+											"                \"type\": \"string\"",
+											"            }",
+											"        },",
+											"        \"required\": [",
+											"            \"message\"",
+											"        ]",
+											"    }",
+											"",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/{{id}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Ariel Machado\",\n    \"email\": \"ariel@machado.com\",\n    \"gender\": \"male\",\n    \"status\": \"active\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{api_url}}",
-					"host": [
-						"{{api_url}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get list of users",
-			"event": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Validate response status\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Validate response values\", function () {",
-							"    const responseJson = pm.response.json();",
-							"    pm.expect(responseJson[0].id).to.be.a('number');",
-							"    pm.expect(responseJson[0].name).to.eql(\"Ariel Machado\");",
-							"    pm.expect(responseJson[0].email).to.eql('ariel@machado.com');",
-							"    pm.expect(responseJson[0].gender).to.eql('male');",
-							"    pm.expect(responseJson[0].status).to.eql('active');",
-							"});",
-							"",
-							"pm.test(\"Validate response schema\", function () {",
-							"    const schema = {",
-							"        \"type\": \"array\",",
-							"        \"items\": [",
-							"            {",
-							"                \"type\": \"object\",",
-							"                \"properties\": {",
-							"                    \"id\": {",
-							"                        \"type\": \"integer\"",
-							"                    },",
-							"                    \"name\": {",
-							"                        \"type\": \"string\"",
-							"                    },",
-							"                    \"email\": {",
-							"                        \"type\": \"string\"",
-							"                    },",
-							"                    \"gender\": {",
-							"                        \"type\": \"string\"",
-							"                    },",
-							"                    \"status\": {",
-							"                        \"type\": \"string\"",
-							"                    }",
-							"            },",
-							"            \"required\": ",
-							"                [",
-							"                    \"id\",",
-							"                    \"name\",",
-							"                    \"email\",",
-							"                    \"gender\",",
-							"                    \"status\"",
-							"                ]",
-							"            }",
-							"        ]",
-							"    }",
-							"",
-							"    pm.response.to.have.jsonSchema(schema);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "Wrong data",
+					"item": [
 						{
-							"key": "token",
-							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
-							"type": "string"
+							"name": "Create new user - Empty fields errors",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status\", function () {",
+											"    pm.response.to.have.status(422);",
+											"});",
+											"",
+											"pm.test(\"Validate response values\", function () {",
+											"    const responseJson = pm.response.json();",
+											"    pm.expect(responseJson[0].field).to.be.eql('email');",
+											"    pm.expect(responseJson[0].message).to.be.eql(\"can't be blank\");",
+											"    pm.expect(responseJson[1].field).to.be.eql('name');",
+											"    pm.expect(responseJson[1].message).to.be.eql(\"can't be blank\");",
+											"    pm.expect(responseJson[2].field).to.be.eql('gender');",
+											"    pm.expect(responseJson[2].message).to.be.eql(\"can't be blank, can be male of female\");",
+											"    pm.expect(responseJson[3].field).to.be.eql('status');",
+											"    pm.expect(responseJson[3].message).to.be.eql(\"can't be blank\");",
+											"});",
+											"",
+											"// pm.test(\"Validate response schema\", function () {",
+											"//     const schema = {",
+											"//         \"type\": \"array\",",
+											"//         \"items\": [",
+											"//             {",
+											"//                 \"type\": \"object\",",
+											"//                 \"properties\": {",
+											"//                     \"field\": {",
+											"//                         \"type\": \"string\"",
+											"//                     },",
+											"//                 \"message\": {",
+											"//                     \"type\": \"string\"",
+											"//                 }",
+											"//             },",
+											"//             \"required\": [",
+											"//                 \"field\",",
+											"//                 \"message\"",
+											"//             ]",
+											"//         }",
+											"//         ]",
+											"//     }",
+											"",
+											"//     pm.response.to.have.jsonSchema(schema);",
+											"// });",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"\",\n    \"email\": \"\",\n    \"gender\": \"\",\n    \"status\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}",
+									"host": [
+										"{{api_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new user - Value fields errors",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status\", function () {",
+											"    pm.response.to.have.status(422);",
+											"});",
+											"",
+											"pm.test(\"Validate response values\", function () {",
+											"    const responseJson = pm.response.json();",
+											"    pm.expect(responseJson[0].field).to.be.eql('gender');",
+											"    pm.expect(responseJson[0].message).to.be.eql(\"can't be blank, can be male of female\");",
+											"    pm.expect(responseJson[1].field).to.be.eql('status');",
+											"    pm.expect(responseJson[1].message).to.be.eql(\"can't be blank\");",
+											"});",
+											"",
+											"pm.test(\"Validate response schema\", function () {",
+											"    const schema = {",
+											"        \"type\": \"array\",",
+											"        \"items\": [",
+											"            {",
+											"                \"type\": \"object\",",
+											"                \"properties\": {",
+											"                    \"field\": {",
+											"                        \"type\": \"string\"",
+											"                    },",
+											"                \"message\": {",
+											"                    \"type\": \"string\"",
+											"                }",
+											"            },",
+											"                \"required\": [",
+											"                    \"field\",",
+											"                    \"message\"",
+											"                ]",
+											"            },",
+											"            {",
+											"            \"type\": \"object\",",
+											"            \"properties\": {",
+											"                \"field\": {",
+											"                \"type\": \"string\"",
+											"                },",
+											"                \"message\": {",
+											"                \"type\": \"string\"",
+											"                }",
+											"            },",
+											"            \"required\": [",
+											"                \"field\",",
+											"                \"message\"",
+											"            ]",
+											"            },",
+											"            {",
+											"            \"type\": \"object\",",
+											"            \"properties\": {",
+											"                \"field\": {",
+											"                \"type\": \"string\"",
+											"                },",
+											"                \"message\": {",
+											"                \"type\": \"string\"",
+											"                }",
+											"            },",
+											"            \"required\": [",
+											"                \"field\",",
+											"                \"message\"",
+											"            ]",
+											"            },",
+											"            {",
+											"            \"type\": \"object\",",
+											"            \"properties\": {",
+											"                \"field\": {",
+											"                \"type\": \"string\"",
+											"                },",
+											"                \"message\": {",
+											"                \"type\": \"string\"",
+											"                }",
+											"            },",
+											"            \"required\": [",
+											"                \"field\",",
+											"                \"message\"",
+											"            ]",
+											"            }",
+											"        ]",
+											"    }",
+											"",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Ariel Machado\",\n    \"email\": \"ariel@machado.com\",\n    \"gender\": \"something\",\n    \"status\": \"else\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}",
+									"host": [
+										"{{api_url}}"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{api_url}}",
-					"host": [
-						"{{api_url}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get user by ID - Initial values",
-			"event": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Validate response status\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Validate response values\", function () {",
-							"    const responseJson = pm.response.json();",
-							"    pm.expect(responseJson.id).to.be.a('number');",
-							"    pm.expect(responseJson.name).to.eql(\"Ariel Machado\");",
-							"    pm.expect(responseJson.email).to.eql('ariel@machado.com');",
-							"    pm.expect(responseJson.gender).to.eql('male');",
-							"    pm.expect(responseJson.status).to.eql('active');",
-							"});",
-							"",
-							"pm.test(\"Validate response schema\", function () {",
-							"    const schema = {",
-							"        \"type\": \"object\",",
-							"        \"properties\": {",
-							"        \"id\": {",
-							"            \"type\": \"integer\"",
-							"        },",
-							"        \"name\": {",
-							"            \"type\": \"string\"",
-							"        },",
-							"        \"email\": {",
-							"            \"type\": \"string\"",
-							"        },",
-							"        \"gender\": {",
-							"            \"type\": \"string\"",
-							"        },",
-							"        \"status\": {",
-							"            \"type\": \"string\"",
-							"        }",
-							"    },",
-							"    \"required\": [",
-							"        \"id\",",
-							"        \"name\",",
-							"        \"email\",",
-							"        \"gender\",",
-							"        \"status\"",
-							"    ]}",
-							"",
-							"    pm.response.to.have.jsonSchema(schema);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "Repeated email",
+					"item": [
 						{
-							"key": "token",
-							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
-							"type": "string"
+							"name": "Create new user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"",
+											"pm.test(\"Validate response values\", function () {",
+											"    const responseJson = pm.response.json();",
+											"    pm.expect(responseJson.id).to.be.a('number');",
+											"    pm.expect(responseJson.name).to.eql(\"Ariel Machado\");",
+											"    pm.expect(responseJson.email).to.eql('ariel@machado.com');",
+											"    pm.expect(responseJson.gender).to.eql('male');",
+											"    pm.expect(responseJson.status).to.eql('active');",
+											"});",
+											"",
+											"pm.test(\"Validate response schema\", function () {",
+											"    const schema = {",
+											"        \"type\": \"object\",",
+											"        \"properties\": {",
+											"        \"id\": {",
+											"            \"type\": \"integer\"",
+											"        },",
+											"        \"name\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"email\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"gender\": {",
+											"            \"type\": \"string\"",
+											"        },",
+											"        \"status\": {",
+											"            \"type\": \"string\"",
+											"        }",
+											"    },",
+											"    \"required\": ",
+											"        [",
+											"            \"id\",",
+											"            \"name\",",
+											"            \"email\",",
+											"            \"gender\",",
+											"            \"status\"",
+											"        ]",
+											"    }",
+											"",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});",
+											"",
+											"pm.test(\"Update environment variables with the values from the response\", function () {",
+											"    if (pm.response.code == 201) {",
+											"        var jsonData = JSON.parse(responseBody);",
+											"        postman.setEnvironmentVariable(\"id\", jsonData.id)",
+											"        postman.setEnvironmentVariable(\"name\", jsonData.name)",
+											"        postman.setEnvironmentVariable(\"email\", jsonData.email)",
+											"        postman.setEnvironmentVariable(\"gender\", jsonData.gender)",
+											"        postman.setEnvironmentVariable(\"status\", jsonData.status)",
+											"    }    ",
+											"});",
+											"",
+											"pm.test(\"Validate the value stored at the environment level\", function () {",
+											"    var jsonData = JSON.parse(responseBody);",
+											"    pm.expect(pm.environment.get(\"id\")).to.eql(String(pm.response.json().id));",
+											"    pm.expect(pm.environment.get(\"name\")).to.eql(String(pm.response.json().name));",
+											"    pm.expect(pm.environment.get(\"email\")).to.eql(String(pm.response.json().email));",
+											"    pm.expect(pm.environment.get(\"gender\")).to.eql(String(pm.response.json().gender));",
+											"    pm.expect(pm.environment.get(\"status\")).to.eql(String(pm.response.json().status));",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Ariel Machado\",\n    \"email\": \"ariel@machado.com\",\n    \"gender\": \"male\",\n    \"status\": \"active\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}",
+									"host": [
+										"{{api_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new user - Email duplicated",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status\", function () {",
+											"    pm.response.to.have.status(422);",
+											"});",
+											"",
+											"pm.test(\"Validate response values\", function () {",
+											"    const responseJson = pm.response.json();",
+											"    pm.expect(responseJson[0].field).to.be.eql('email');",
+											"    pm.expect(responseJson[0].message).to.be.eql('has already been taken');",
+											"});",
+											"",
+											"pm.test(\"Validate response schema\", function () {",
+											"    const schema = {",
+											"        \"type\": \"array\",",
+											"        \"items\": [",
+											"            {",
+											"                \"type\": \"object\",",
+											"                \"properties\": {",
+											"                    \"field\": {",
+											"                        \"type\": \"string\"",
+											"                    },",
+											"                \"message\": {",
+											"                    \"type\": \"string\"",
+											"                }",
+											"            },",
+											"            \"required\": [",
+											"                \"field\",",
+											"                \"message\"",
+											"            ]",
+											"        }",
+											"        ]",
+											"    }",
+											"",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Ariel Machado\",\n    \"email\": \"ariel@machado.com\",\n    \"gender\": \"male\",\n    \"status\": \"active\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}",
+									"host": [
+										"{{api_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status\", function () {",
+											"    pm.response.to.have.status(204);",
+											"});",
+											"",
+											"pm.test(\"Validate response body is empty\", function () {",
+											"    pm.expect(pm.response.text()).to.eql('');",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{api_url}}/{{id}}",
+									"host": [
+										"{{api_url}}"
+									],
+									"path": [
+										"{{id}}"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{api_url}}/{{id}}",
-					"host": [
-						"{{api_url}}"
-					],
-					"path": [
-						"{{id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update user data",
-			"event": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Validate response status\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Validate response values\", function () {",
-							"    const responseJson = pm.response.json();",
-							"    pm.expect(responseJson.id).to.be.a('number');",
-							"    pm.expect(responseJson.name).to.eql(\"Cata Machado\");",
-							"    pm.expect(responseJson.email).to.eql('cata@machado.com');",
-							"    pm.expect(responseJson.gender).to.eql('female');",
-							"    pm.expect(responseJson.status).to.eql('inactive');",
-							"});",
-							"",
-							"pm.test(\"Validate response schema\", function () {",
-							"    const schema = {",
-							"        \"type\": \"object\",",
-							"        \"properties\": {",
-							"        \"id\": {",
-							"            \"type\": \"integer\"",
-							"        },",
-							"        \"name\": {",
-							"            \"type\": \"string\"",
-							"        },",
-							"        \"email\": {",
-							"            \"type\": \"string\"",
-							"        },",
-							"        \"gender\": {",
-							"            \"type\": \"string\"",
-							"        },",
-							"        \"status\": {",
-							"            \"type\": \"string\"",
-							"        }",
-							"    },",
-							"    \"required\": ",
-							"        [",
-							"            \"id\",",
-							"            \"name\",",
-							"            \"email\",",
-							"            \"gender\",",
-							"            \"status\"",
-							"        ]",
-							"    }",
-							"",
-							"    pm.response.to.have.jsonSchema(schema);",
-							"});",
-							"",
-							"pm.test(\"Update environment variables with the values from the response\", function () {",
-							"    var jsonData = JSON.parse(responseBody);",
-							"    postman.setEnvironmentVariable(\"name\", jsonData.name)",
-							"    postman.setEnvironmentVariable(\"email\", jsonData.email)",
-							"    postman.setEnvironmentVariable(\"gender\", jsonData.gender)",
-							"    postman.setEnvironmentVariable(\"status\", jsonData.status)",
-							"});",
-							"",
-							"pm.test(\"Validate the value stored at the environment level\", function () {",
-							"    var jsonData = JSON.parse(responseBody);",
-							"    pm.expect(pm.environment.get(\"id\")).to.eql(String(pm.response.json().id));",
-							"    pm.expect(pm.environment.get(\"name\")).to.eql(String(pm.response.json().name));",
-							"    pm.expect(pm.environment.get(\"email\")).to.eql(String(pm.response.json().email));",
-							"    pm.expect(pm.environment.get(\"gender\")).to.eql(String(pm.response.json().gender));",
-							"    pm.expect(pm.environment.get(\"status\")).to.eql(String(pm.response.json().status));",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "Wrong request",
+					"item": [
 						{
-							"key": "token",
-							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Cata Machado\",\n    \"email\": \"cata@machado.com\",\n    \"gender\": \"female\",\n    \"status\": \"inactive\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{api_url}}/{{id}}",
-					"host": [
-						"{{api_url}}"
-					],
-					"path": [
-						"{{id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get user by ID - User updated",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Validate response status\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Validate response values\", function () {",
-							"    const responseJson = pm.response.json();",
-							"    pm.expect(responseJson.id).to.be.a('number');",
-							"    pm.expect(responseJson.name).to.eql(\"Cata Machado\");",
-							"    pm.expect(responseJson.email).to.eql('cata@machado.com');",
-							"    pm.expect(responseJson.gender).to.eql('female');",
-							"    pm.expect(responseJson.status).to.eql('inactive');",
-							"});",
-							"",
-							"pm.test(\"Validate response schema\", function () {",
-							"    const schema = {",
-							"        \"type\": \"object\",",
-							"        \"properties\": {",
-							"        \"id\": {",
-							"            \"type\": \"integer\"",
-							"        },",
-							"        \"name\": {",
-							"            \"type\": \"string\"",
-							"        },",
-							"        \"email\": {",
-							"            \"type\": \"string\"",
-							"        },",
-							"        \"gender\": {",
-							"            \"type\": \"string\"",
-							"        },",
-							"        \"status\": {",
-							"            \"type\": \"string\"",
-							"        }",
-							"    },",
-							"    \"required\": [",
-							"        \"id\",",
-							"        \"name\",",
-							"        \"email\",",
-							"        \"gender\",",
-							"        \"status\"",
-							"    ]}",
-							"",
-							"    pm.response.to.have.jsonSchema(schema);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+							"name": "Create new user - Incorrect token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status\", function () {",
+											"    pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Validate response values\", function () {",
+											"    const responseJson = pm.response.json();",
+											"    pm.expect(responseJson.message).to.be.eql('Authentication failed');",
+											"});",
+											"",
+											"pm.test(\"Validate response schema\", function () {",
+											"    const schema = {",
+											"        \"type\": \"object\",",
+											"        \"properties\": {",
+											"            \"message\": {",
+											"                \"type\": \"string\"",
+											"            }",
+											"        },",
+											"        \"required\": [",
+											"            \"message\"",
+											"        ]",
+											"    }",
+											"",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Ariel Machado\",\n    \"email\": \"ariel@machado.com\",\n    \"gender\": \"male\",\n    \"status\": \"active\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{api_url}}",
+									"host": [
+										"{{api_url}}"
+									]
+								}
+							},
+							"response": []
+						},
 						{
-							"key": "token",
-							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{api_url}}/{{id}}",
-					"host": [
-						"{{api_url}}"
-					],
-					"path": [
-						"{{id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete user",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Validate response status\", function () {",
-							"    pm.response.to.have.status(204);",
-							"});",
-							"",
-							"pm.test(\"Validate response body is empty\", function () {",
-							"    pm.expect(pm.response.text()).to.eql('');",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+							"name": "Create new user - Incorrect api url",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate response status\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Ariel Machado\",\n    \"email\": \"ariel@machado.com\",\n    \"gender\": \"male\",\n    \"status\": \"active\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://gorest.co.in/public/v2/people",
+									"protocol": "https",
+									"host": [
+										"gorest",
+										"co",
+										"in"
+									],
+									"path": [
+										"public",
+										"v2",
+										"people"
+									]
+								}
+							},
+							"response": []
+						},
 						{
-							"key": "token",
-							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
-							"type": "string"
+							"name": "Get user by ID - Wrong parameter name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// The request returns a 200 although it should return a 404 since this url does not exist and the ID used either",
+											"pm.test(\"Validate response status\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://gorest.co.in/public/v2/users?id=666",
+									"protocol": "https",
+									"host": [
+										"gorest",
+										"co",
+										"in"
+									],
+									"path": [
+										"public",
+										"v2",
+										"users"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "666"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{api_url}}/{{id}}",
-					"host": [
-						"{{api_url}}"
-					],
-					"path": [
-						"{{id}}"
-					]
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get user by ID - Not found",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Validate response status\", function () {",
-							"    pm.response.to.have.status(404);",
-							"});",
-							"",
-							"pm.test(\"Validate response values\", function () {",
-							"    const responseJson = pm.response.json();",
-							"    pm.expect(responseJson.message).to.be.eql('Resource not found');",
-							"});",
-							"",
-							"pm.test(\"Validate response schema\", function () {",
-							"    const schema = {",
-							"        \"type\": \"object\",",
-							"        \"properties\": {",
-							"            \"message\": {",
-							"                \"type\": \"string\"",
-							"            }",
-							"        },",
-							"        \"required\": [",
-							"            \"message\"",
-							"        ]",
-							"    }",
-							"",
-							"    pm.response.to.have.jsonSchema(schema);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{api_url}}/{{id}}",
-					"host": [
-						"{{api_url}}"
-					],
-					"path": [
-						"{{id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update user - Not found",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Validate response status\", function () {",
-							"    pm.response.to.have.status(404);",
-							"});",
-							"",
-							"pm.test(\"Validate response values\", function () {",
-							"    const responseJson = pm.response.json();",
-							"    pm.expect(responseJson.message).to.be.eql('Resource not found');",
-							"});",
-							"",
-							"pm.test(\"Validate response schema\", function () {",
-							"    const schema = {",
-							"        \"type\": \"object\",",
-							"        \"properties\": {",
-							"            \"message\": {",
-							"                \"type\": \"string\"",
-							"            }",
-							"        },",
-							"        \"required\": [",
-							"            \"message\"",
-							"        ]",
-							"    }",
-							"",
-							"    pm.response.to.have.jsonSchema(schema);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Cata Machado\",\n    \"email\": \"cata@machado.com\",\n    \"gender\": \"female\",\n    \"status\": \"inactive\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{api_url}}/{{id}}",
-					"host": [
-						"{{api_url}}"
-					],
-					"path": [
-						"{{id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete user - Not found",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Validate response status\", function () {",
-							"    pm.response.to.have.status(404);",
-							"});",
-							"",
-							"pm.test(\"Validate response values\", function () {",
-							"    const responseJson = pm.response.json();",
-							"    pm.expect(responseJson.message).to.be.eql('Resource not found');",
-							"});",
-							"",
-							"pm.test(\"Validate response schema\", function () {",
-							"    const schema = {",
-							"        \"type\": \"object\",",
-							"        \"properties\": {",
-							"            \"message\": {",
-							"                \"type\": \"string\"",
-							"            }",
-							"        },",
-							"        \"required\": [",
-							"            \"message\"",
-							"        ]",
-							"    }",
-							"",
-							"    pm.response.to.have.jsonSchema(schema);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{api_url}}/{{id}}",
-					"host": [
-						"{{api_url}}"
-					],
-					"path": [
-						"{{id}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create new user - Empty fields errors",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Validate response status\", function () {",
-							"    pm.response.to.have.status(422);",
-							"});",
-							"",
-							"pm.test(\"Validate response values\", function () {",
-							"    const responseJson = pm.response.json();",
-							"    pm.expect(responseJson[0].field).to.be.eql('email');",
-							"    pm.expect(responseJson[0].message).to.be.eql(\"can't be blank\");",
-							"    pm.expect(responseJson[1].field).to.be.eql('name');",
-							"    pm.expect(responseJson[1].message).to.be.eql(\"can't be blank\");",
-							"    pm.expect(responseJson[2].field).to.be.eql('gender');",
-							"    pm.expect(responseJson[2].message).to.be.eql(\"can't be blank, can be male of female\");",
-							"    pm.expect(responseJson[3].field).to.be.eql('status');",
-							"    pm.expect(responseJson[3].message).to.be.eql(\"can't be blank\");",
-							"});",
-							"",
-							"// pm.test(\"Validate response schema\", function () {",
-							"//     const schema = {",
-							"//         \"type\": \"array\",",
-							"//         \"items\": [",
-							"//             {",
-							"//                 \"type\": \"object\",",
-							"//                 \"properties\": {",
-							"//                     \"field\": {",
-							"//                         \"type\": \"string\"",
-							"//                     },",
-							"//                 \"message\": {",
-							"//                     \"type\": \"string\"",
-							"//                 }",
-							"//             },",
-							"//             \"required\": [",
-							"//                 \"field\",",
-							"//                 \"message\"",
-							"//             ]",
-							"//         }",
-							"//         ]",
-							"//     }",
-							"",
-							"//     pm.response.to.have.jsonSchema(schema);",
-							"// });",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"\",\n    \"email\": \"\",\n    \"gender\": \"\",\n    \"status\": \"\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{api_url}}",
-					"host": [
-						"{{api_url}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create new user - Value fields errors",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Validate response status\", function () {",
-							"    pm.response.to.have.status(422);",
-							"});",
-							"",
-							"pm.test(\"Validate response values\", function () {",
-							"    const responseJson = pm.response.json();",
-							"    pm.expect(responseJson[0].field).to.be.eql('gender');",
-							"    pm.expect(responseJson[0].message).to.be.eql(\"can't be blank, can be male of female\");",
-							"    pm.expect(responseJson[1].field).to.be.eql('status');",
-							"    pm.expect(responseJson[1].message).to.be.eql(\"can't be blank\");",
-							"});",
-							"",
-							"pm.test(\"Validate response schema\", function () {",
-							"    const schema = {",
-							"        \"type\": \"array\",",
-							"        \"items\": [",
-							"            {",
-							"                \"type\": \"object\",",
-							"                \"properties\": {",
-							"                    \"field\": {",
-							"                        \"type\": \"string\"",
-							"                    },",
-							"                \"message\": {",
-							"                    \"type\": \"string\"",
-							"                }",
-							"            },",
-							"                \"required\": [",
-							"                    \"field\",",
-							"                    \"message\"",
-							"                ]",
-							"            },",
-							"            {",
-							"            \"type\": \"object\",",
-							"            \"properties\": {",
-							"                \"field\": {",
-							"                \"type\": \"string\"",
-							"                },",
-							"                \"message\": {",
-							"                \"type\": \"string\"",
-							"                }",
-							"            },",
-							"            \"required\": [",
-							"                \"field\",",
-							"                \"message\"",
-							"            ]",
-							"            },",
-							"            {",
-							"            \"type\": \"object\",",
-							"            \"properties\": {",
-							"                \"field\": {",
-							"                \"type\": \"string\"",
-							"                },",
-							"                \"message\": {",
-							"                \"type\": \"string\"",
-							"                }",
-							"            },",
-							"            \"required\": [",
-							"                \"field\",",
-							"                \"message\"",
-							"            ]",
-							"            },",
-							"            {",
-							"            \"type\": \"object\",",
-							"            \"properties\": {",
-							"                \"field\": {",
-							"                \"type\": \"string\"",
-							"                },",
-							"                \"message\": {",
-							"                \"type\": \"string\"",
-							"                }",
-							"            },",
-							"            \"required\": [",
-							"                \"field\",",
-							"                \"message\"",
-							"            ]",
-							"            }",
-							"        ]",
-							"    }",
-							"",
-							"    pm.response.to.have.jsonSchema(schema);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "75782cb2abeba44a7d1a9f56c587fcadcf617badd6eccceb03ce9c229dbf45b3",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Ariel Machado\",\n    \"email\": \"ariel@machado.com\",\n    \"gender\": \"something\",\n    \"status\": \"else\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{api_url}}",
-					"host": [
-						"{{api_url}}"
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	]
 }
