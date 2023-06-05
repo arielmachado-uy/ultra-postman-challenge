@@ -31,4 +31,3 @@ jobs:
 
     - name: Run tests
       run: yarn pm:run
-      # run: npx newman run ultra_collection.json -e ultra_environment.json
