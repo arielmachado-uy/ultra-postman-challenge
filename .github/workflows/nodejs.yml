@@ -1,4 +1,4 @@
-name: Newman Postman Collection
+name: Newman running Postman Collection
 
 on: [push, workflow_dispatch]
 
