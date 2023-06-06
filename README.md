@@ -173,7 +173,7 @@ All the scenarios were created in a way that can be executed in series from top 
 
 <br>
 
-**POstman implementation**
+**Postman implementation**
 
 Postman setup
 
@@ -208,6 +208,7 @@ Project execution
 - `yarn pm:run`
 
 <br>
+
 Information about the project implementation
 
 <br>
